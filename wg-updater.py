@@ -13,7 +13,7 @@ conf_file = open('config.ini')
 config.readfp(conf_file)
 USERNAME = config.get('Login', 'email')
 PASSWORD = config.get('Login', 'password')
-POSTING_URL = config.get('Posting', 'posting_url')
+LISTING_URL = config.get('Listing', 'listing_url')
 DELAY = config.get('Driver', 'delay')
 
 # Login
@@ -32,7 +32,7 @@ time.sleep(5)
 while True:
     # Open listing
     driver.get(
-        POSTING_URL)
+        LISTING_URL)
     time.sleep(5)
     driver.find_element_by_id("step_one_submit").click()
 
