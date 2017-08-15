@@ -14,7 +14,7 @@ config.readfp(conf_file)
 USERNAME = config.get('Login', 'email')
 PASSWORD = config.get('Login', 'password')
 LISTING_URL = config.get('Listing', 'listing_url')
-DELAY = config.get('Driver', 'delay')
+DELAY = int(config.get('Driver', 'delay'))
 
 # Login
 driver = webdriver.Chrome('/Applications/chromedriver')
