@@ -5,7 +5,7 @@ WG-activator
 
 Clone the repository and enter the directory. Activate Python 3 virtual environment if necessary.
 
-Note: assumes Mac with Chromedriver installed in `/Applications`. If running Linux or Windows, download [Chromedriver](http://chromedriver.chromium.org/downloads) and update `CHROMEDRIVER_PATH` in `wg-updater.py`.
+Note: assumes Mac with ChromeDriver installed in `/Applications`. If running Linux or Windows, download [ChromeDriver](http://chromedriver.chromium.org/downloads) and update `CHROMEDRIVER_PATH` in `wg-updater.py`.
 
 Run `pip install selenium`.
 
