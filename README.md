@@ -14,5 +14,5 @@ mv config-sample.ini config.ini
 Change the fields in config.ini to reflect your settings.
 
 ```
-python3 wg-updater.py
+python wg-updater.py
 ```
