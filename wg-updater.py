@@ -15,7 +15,7 @@ USERNAME = config.get('Login', 'email')
 PASSWORD = config.get('Login', 'password')
 LISTING_URL = config.get('Listing', 'listing_url')
 DELAY = int(config.get('Driver', 'delay'))
-CHROMEDRIVER_PATH = '/Applications/chromedriver' # mac-only
+CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver' # mac-only
 
 # Login
 driver = webdriver.Chrome(CHROMEDRIVER_PATH)
@@ -23,23 +23,35 @@ driver.get('https://wg-gesucht.de')
 # Remove cookie button
 btn = driver.find_element_by_id("cookie-confirm").click()
 driver.find_element_by_link_text("LOGIN").click()
-username = driver.find_element_by_id("login_email_username")
+time.sleep(1)
+username = driver.find_element_by_name("login_email_username")
 password = driver.find_element_by_id("login_password")
 username.send_keys(USERNAME)
 password.send_keys(PASSWORD)
-driver.find_element(By.XPATH, "//*[@id='login_basic']/div[5]/input").click()
+driver.find_element_by_id('login_submit').click()
 time.sleep(5)
 
 while True:
     # Open listing
     driver.get(
         LISTING_URL)
-    time.sleep(5)
-    driver.find_element_by_id("step_one_submit").click()
+    time.sleep(3)
+    contact = driver.find_element_by_class_name('bottom_contact_box')
+    edit = contact.find_element_by_link_text('ANGEBOT BEARBEITEN')
+    edit.send_keys(Keys.TAB)
+    time.sleep(1)
+    edit.click()
+    time.sleep(3)
 
     # Refresh listing
-    elem = driver.find_element_by_class_name('btn-orange')
-    elem.click()
+    btn = driver.find_element_by_class_name('btn-orange') # weiter
+    btn.send_keys(Keys.TAB)
+    time.sleep(2)
+    btn.send_keys(Keys.SPACE)
+    btn = driver.find_element_by_class_name('btn-orange') # Änderungen ubernehmen
+    btn.send_keys(Keys.TAB)
+    time.sleep(2)
+    btn.send_keys(Keys.SPACE)
     assert 'zehn Minuten' in driver.page_source
     print("Reloaded at {}".format(datetime.now().strftime("%Y-%m-%d %H:%M")))
     time.sleep(DELAY)
